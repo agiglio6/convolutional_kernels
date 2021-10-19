@@ -20,7 +20,7 @@ class CConvKernel(ABC):
     @kernel_size.setter
     def kernel_size(self, value):
         if int(value) % 2 == 0:
-            raise TypeError("Kernel size must be an odd integer.\n")
+            raise ValueError("Kernel size must be an odd integer.")
         self._kernel_size = int(value)
         self.kernel_mask()
 
@@ -30,10 +30,10 @@ class CConvKernel(ABC):
 
     def kernel(self, x):
         if x.size != x.shape[0]:
-            raise TypeError("x must be a flattened array.\n")
+            raise TypeError("x must be a flattened array.")
 
         if self._mask is None:
-            raise TypeError("Kernel mask not defined.\n")
+            raise TypeError("Kernel mask not defined.")
 
         xp = np.convolve(x, self._mask, 'same')
 

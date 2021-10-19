@@ -5,8 +5,8 @@ from .conv_kernel import CConvKernel
 
 class CConvKernelTriangle(CConvKernel):
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, kernel_size=3):
+        super().__init__(kernel_size)
 
     def kernel_mask(self):
         x = np.arange(1, (self._kernel_size+1)/2)
